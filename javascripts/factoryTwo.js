@@ -1,42 +1,39 @@
-let fakeSentObject = {
-	"name": "Finding Nemo",
-	"released": "2006",
-	"cast": ["Gill", "Nemo"],
-	"rating": 5,
-	"watched": true
-};
-
+/*
+Any controller that needs access to these methods
+MUST include this factory ('moviePath') in its function arguments
+*/
 
 angular.module('movieHunter', [])
-	.factory('moviePath', ($http) => {
+	.factory('moviePath', ($http, controller3) => {
 
 		const FB_URL = 'https://movie-hunter.firebaseio.com/movies';
 		let myMovies;
 
 		return {
 			// GET from firebase
-			getMovies () {
+			getMoviesFromFirebase () {
 				$http.get(`${FB_URL}.json`)
 					.then(ret => {
 							myMovies = ret.data;
-							console.log("returned movies", myMovies);
+							controller3.getMovies(myMovies);
 						}
 					)
 			},
-			// POST to firebase
-			postMovie (object, factory) {
+			/*
+				POST to firebase; 'factory' argument allows
+				this method to call the getMoviesFromFirebase method
+			*/
+			postMovieToFirebase (object, factory) {
 				$http.post(`${FB_URL}.json`, object)
-					.then(factory.getMovies)
+					.then(factory.getMoviesFromFirebase)
 			},
-			// DELETE from firebase
-			deleteMovie (id, factory) {
+			/*
+				DELETE from firebase; 'factory' argument allows
+				this method to call the getMoviesFromFirebase method
+			*/
+			deleteMovieFromFirebase (id, factory) {
 				$http.delete(`${FB_URL}/${id}.json`)
-					.then(factory.getMovies)
+					.then(factory.getMoviesFromFirebase)
 			}
 		}
 	})
-	.controller('fakeController', function (moviePath) {
-		// moviePath.postMovie(fakeSentObject, moviePath)
-		moviePath.deleteMovie('', moviePath)
-	})
-
