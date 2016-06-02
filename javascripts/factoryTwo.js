@@ -14,31 +14,29 @@ angular.module('movieHunter', [])
 		let myMovies;
 
 		return {
-		// GET from firebase
+			// GET from firebase
 			getMovies () {
-					$http.get(`${FB_URL}.json`)
-						.then(ret => {
-								myMovies = ret.data;
-								console.log("returned movies", myMovies);
-							}
-						)
-
+				$http.get(`${FB_URL}.json`)
+					.then(ret => {
+							myMovies = ret.data;
+							console.log("returned movies", myMovies);
+						}
+					)
 			},
 			// POST to firebase
 			postMovie (object, factory) {
 				$http.post(`${FB_URL}.json`, object)
-					.then(factory.getMovies())
+					.then(factory.getMovies)
 			},
 			// DELETE from firebase
 			deleteMovie (id, factory) {
 				$http.delete(`${FB_URL}/${id}.json`)
-					.then(factory.getMovies())
+					.then(factory.getMovies)
 			}
 		}
 	})
-	.controller('fakeController', (moviePath) => (
+	.controller('fakeController', function (moviePath) {
 		// moviePath.postMovie(fakeSentObject, moviePath)
-		moviePath.deleteMovie('-KJH_uWxUKL5FXSLBR2d', moviePath)
-	)
+		moviePath.deleteMovie('', moviePath)
+	})
 
-)
