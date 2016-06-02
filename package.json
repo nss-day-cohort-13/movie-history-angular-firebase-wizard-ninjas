@@ -1,0 +1,30 @@
+{
+  "name": "movie-history-angular-firebase-wizard-ninjas",
+  "version": "1.0.0",
+  "description": "You will be split up into teams of three, and your team will build a new application to keep track of movies that you have seen, and want to see, with your own ratings based on [OMDb API](http://omdbapi.com/).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nss-day-cohort-13/movie-history-angular-firebase-wizard-ninjas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nss-day-cohort-13/movie-history-angular-firebase-wizard-ninjas/issues"
+  },
+  "homepage": "https://github.com/nss-day-cohort-13/movie-history-angular-firebase-wizard-ninjas#readme",
+  "devDependencies": {
+    "angular": "^1.5.6",
+    "angular-route": "^1.5.6",
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.1",
+    "gulp-watch": "^4.3.6",
+    "jquery": "^2.2.4",
+    "jshint": "^2.9.2",
+    "jshint-stylish": "^2.2.0"
+  }
+}
