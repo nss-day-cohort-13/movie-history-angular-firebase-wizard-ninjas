@@ -19,6 +19,6 @@
   "globalstrict": true,
   "globals": {
     "test": false,
-    "chatty": true
+    "angular": true
   }
 }
