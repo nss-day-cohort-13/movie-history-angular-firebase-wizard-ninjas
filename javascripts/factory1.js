@@ -17,10 +17,9 @@ movieHunter
             rating: Math.floor(response.data.imdbRating), // This needs to be an int
             watched: false
           };
-          // console.log("film", film);
+          console.log("film", film);
 
           // controller2.
-
 
       });
     } 
