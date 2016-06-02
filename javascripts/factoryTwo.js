@@ -24,9 +24,10 @@ angular.module('movieHunter', [])
 						)
 
 			},
-			postMovie (object, moviePath) {
+			// POST to firebase
+			postMovie (object, factory) {
 				$http.post(`${FB_URL}/movies.json`, object)
-					.then(moviePath.getMovies())
+					.then(factory.getMovies())
 			}
 		}
 	})
