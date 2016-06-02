@@ -1,8 +1,16 @@
 "use strict";
 
-angular.module("movieHunter")
-  .controller("controller1", ($scope) => {
+movieHunter
+.controller("controller1", ['$scope', 'factory1', function ($scope, factory1) {
 
-    $scope.searchBarMovie = "";
- 
-  });
+  $scope.searchBarMovie = "";
+
+  $scope.getSearchValue = (movieToSearch) => {
+
+    movieToSearch = movieToSearch.toLowerCase();
+
+    factory1.searchOMDb(movieToSearch);
+
+  };
+
+}]);
