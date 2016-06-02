@@ -1,17 +1,73 @@
-"use strict";
+'use strict';
 
-var gulp = require('gulp');
-var jshint = require('gulp-jshint');
-var watch = require('gulp-watch');
+const del = require('del');
+const gulp = require('gulp');
+const jshint = require('gulp-jshint');
+const sass = require('gulp-sass');
+const sassLint = require('gulp-sass-lint');
+const runSequence = require('run-sequence');
 
-gulp.task('default', ['lint', 'watch']);
+const sourcePath = './sass';
+const distributionPath = './css';
+const jsPath = `${sourcePath}/**/*.js`;
+const sassPath = `${sourcePath}/**/*.scss`;
+const staticPath = [`${sourcePath}/**/*`, `!${sassPath}`];
 
-gulp.task('watch', function() {
-  gulp.watch('./javascripts/**/*.js', ['lint']);
-});
+// Utilities
 
-gulp.task('lint', function() {
-  return gulp.src('./javascripts/**/*.js')
+gulp.task('clean', () => (
+  del(`${distributionPath}/**/*`)
+));
+
+// Static file Tasks
+
+gulp.task('static:watch', () => (
+   gulp.watch(staticPath, ['build'])
+));
+
+gulp.task('static:copy', () => (
+  gulp.src(staticPath)
+    .pipe(gulp.dest(distributionPath))
+));
+
+// JavaScript Tasks
+
+gulp.task('js:watch', () => (
+  gulp.watch(jsPath, ['js:lint'])
+));
+
+gulp.task('js:lint', () => (
+  gulp.src(jsPath)
     .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'));
-});
+    .pipe(jshint.reporter('jshint-stylish'))
+));
+
+// Sass Tasks
+
+gulp.task('sass:compile', () => (
+  gulp.src(sassPath)
+    .pipe(sass())
+    .pipe(gulp.dest(distributionPath))
+));
+
+gulp.task('sass:lint', () => (
+  gulp.src(sassPath)
+    .pipe(sassLint())
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError())
+));
+
+gulp.task('sass:watch', () => (
+  gulp.watch(sassPath,
+    ['sass:lint', 'sass:compile']
+  )
+));
+
+// Composed Tasks
+
+gulp.task('build', () => (
+  runSequence('clean', ['sass:compile', 'static:copy'])
+));
+gulp.task('watch', ['build', 'static:watch', 'js:watch', 'sass:watch']);
+gulp.task('lint', ['js:lint', 'sass:lint']);
+gulp.task('default', ['build']);
