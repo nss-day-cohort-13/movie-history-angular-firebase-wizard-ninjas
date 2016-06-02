@@ -1,22 +1,17 @@
 "use strict";
 
-angular.module("movieHunter", [])
-.controller("controller1", ['$scope', function($scope) {
+console.log("help");
 
-  $scope.getSearchValue = () => {
-    // This is hardcoded for now
-    $scope.searchValue = "frozen";
+movieHunter
+.controller("controller1", ['$scope', 'factory1', function ($scope, factory1) {
+
+  console.log("me");
+
+  $scope.getSearchValue = (movieToSearch) => {
+
+    factory1.searchOMDb(movieToSearch);
+
   };
 
 
-
-}]);
-
-angular.module('scopeExample', [])
-.controller('MyController', ['$scope', function($scope) {
-  $scope.username = 'World';
-
-  $scope.sayHello = function() {
-    $scope.greeting = 'Hello ' + $scope.username + '!';
-  };
 }]);
