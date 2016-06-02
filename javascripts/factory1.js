@@ -19,7 +19,6 @@ movieHunter
             };
 
             console.log("film = ", film);
-
           } else {
             console.log("Movie not found!")
           }
