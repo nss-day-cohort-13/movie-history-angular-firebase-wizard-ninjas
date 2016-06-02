@@ -3,8 +3,7 @@ Any controller that needs access to these methods
 MUST include this factory ('moviePath') in its function arguments
 */
 
-angular.module('movieHunter', [])
-	.factory('moviePath', ($http, controller3) => {
+movieHunter.factory('moviePath', ($http, controller3) => {
 
 		const FB_URL = 'https://movie-hunter.firebaseio.com/movies';
 		let myMovies;
