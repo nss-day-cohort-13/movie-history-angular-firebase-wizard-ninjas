@@ -5,10 +5,10 @@ movieHunter
     $scope.currentMoviesObject = {};
     
     $scope.asnychronousLoadMyMovies = function () {
-      console.log("load my movies function is working" );
       moviePath.getMoviesFromFirebase()
         .then(moviesObject => {
           $scope.currentMoviesObject=moviesObject;
+          console.log("movies object", $scope.currentMoviesObject);
           $scope.$apply();
         })
         .catch(e => {console.log(e);}); 
