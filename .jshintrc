@@ -19,6 +19,7 @@
   "globalstrict": true,
   "globals": {
     "test": false,
-    "angular": true
+    "angular": true,
+    "movieHunter": true
   }
 }
