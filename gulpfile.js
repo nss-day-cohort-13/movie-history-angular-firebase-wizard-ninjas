@@ -7,10 +7,10 @@ const sass = require('gulp-sass');
 const sassLint = require('gulp-sass-lint');
 const runSequence = require('run-sequence');
 
-const sourcePath = './sass';
+const sourcePath = './';
 const distributionPath = './css';
-const jsPath = `${sourcePath}/**/*.js`;
-const sassPath = `${sourcePath}/**/*.scss`;
+const jsPath = `./javascripts/*.js`;
+const sassPath = `./sass/*.scss`;
 const staticPath = [`${sourcePath}/**/*`, `!${sassPath}`];
 
 // Utilities
