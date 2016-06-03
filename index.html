@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="">
   </head>
-  <body ng-app="movieHunter">
-  <div id="searchBar" ng-controller="controller1">
+  <body>
+  <div ng-app="movieHunter">
+    <div ng-controller="controller1">
+  <div id="searchBar">
     <form class="form-inline" ng-submit="getSearchValue(searchBarMovie)">
       <div class="form-group">
         <label for="searchBarMovie">Search Movies
@@ -19,6 +21,17 @@
         <button type="submit" class="btn btn-default">Search</button>
     </form>
     </div>
+    <div ng-controller="controller2">
+      <ul ng-model="searchedFilm">
+        <img src="{{film.poster}}">
+        <li>{{film.name}}</li>
+        <li>{{film.year}}</li>
+        <li>{{film.actors}}</li>
+        <li>{{film.rating}}<button type="submit" ng-click="rate">Rate this Film</button></li>
+        <li>{{film.watched}}<button type="submit" ng-click="seen">Seen it?</button></li>
+      </ul>
+    </div>
+    </div></div>
     <script src="/node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
     <script src="/node_modules/angular/angular.min.js"></script>
     <script src="/node_modules/angular-route/angular-route.min.js"></script>
@@ -27,6 +40,6 @@
     <script src="/javascripts/controller2.js" type="text/javascript" charset="utf-8"></script>
     <script src="/javascripts/controller3.js" type="text/javascript" charset="utf-8"></script>
     <script src="/javascripts/factory1.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/javascripts/factory2.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/javascripts/factoryTwo.js" type="text/javascript" charset="utf-8"></script>
   </body>
 </html>
