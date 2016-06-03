@@ -24,10 +24,6 @@ movieHunter
     $scope.deleteMovie = function(id, movie) {
       moviePath.deleteMovieFromFirebase(id, movie)
         .then($scope.asnychronousLoadMyMovies)
-        // .then(moviesObject => {
-          // $scope.currentMoviesObject = moviePath.getMoviesObject();
-          // $scope.$apply();
-        // })
         .catch(e => {console.log(e);});
     };
 
