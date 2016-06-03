@@ -8,7 +8,7 @@ movieHunter
       $http.get(`http://www.omdbapi.com/?t=${arg}&r=json`)
         .then((response) => {
 
-          if( response.data.Error != "Movie not found!") {
+          if( response.data.Error !== "Movie not found!") {
 
             let film = {
               title: response.data.Title,
@@ -20,7 +20,7 @@ movieHunter
 
             console.log("film = ", film);
           } else {
-            console.log("Movie not found!")
+            console.log("Movie not found!");
           }
 
           // controller2.
