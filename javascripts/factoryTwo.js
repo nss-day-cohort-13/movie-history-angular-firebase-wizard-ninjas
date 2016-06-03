@@ -11,11 +11,15 @@ movieHunter.factory("moviePath", (function($http) {
 		return {
 			// GET from firebase
 			getMoviesFromFirebase () {
-				$http.get(`${FB_URL}.json`)
-					.then(ret => {
-							myMovies = ret.data;
-						}
-					);
+				return new Promise(function(resolve, reject) {
+					$http.get(`${FB_URL}.json`)
+						.then(ret => {
+							console.log("data", ret );
+								 myMovies = ret.data;
+								 resolve(myMovies);
+							}
+						);
+					});
 			},
 			/*
 				POST to firebase; 'factory' argument allows
@@ -36,6 +40,7 @@ movieHunter.factory("moviePath", (function($http) {
 			},
 			//added a 'getter' here to return the movies object to the controller. 
 			getMoviesObject () {
+				console.log("Movies in getMoviesObject", myMovies);
 				return myMovies;
 			}
 		};

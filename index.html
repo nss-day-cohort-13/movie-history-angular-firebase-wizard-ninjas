@@ -24,14 +24,16 @@
 
     <!-- My movies Div. connected to controller 3 -->
     <div id="myMovies" ng-controller="controller3">
-      <button class = "btn btn-success" ng-click="loadMyMovies()">Load My Movies</button>
+      <button class = "btn btn-success" ng-click="asnychronousLoadMyMovies()">Load My Movies</button>
 
       <div class="container-fluid">
-      <div class="row" >
+      <div class="row">
+      <!-- MAIN NG REPEAT -->
         <div class="col col-xs-4" ng-repeat="movie in currentMoviesObject">
           <h3>{{movie.name}}</h3>
           <p>Released {{movie.released}}</p>
           <p>Cast: <span ng-repeat="member in movie.cast">{{member}}, </span></p>
+          <!-- EDIT MOVIE FORM -->
           <form class="form-group" ng-submit="editMovie(id, movie)">
             <label  class="form-control" for="watched">Watched?
               <input id="watched" type="checkbox" checked="{{movie.watched}}">
@@ -43,8 +45,9 @@
               <input type="radio" name="rating" value="4">4
               <input type="radio" name="rating" value="5">5
             </label>
-            <button class="btn btn-default" type="submit">Submit Changes</button>
+            <button class="btn btn-default" type="submit" ng-click="editMovie(id, movie)">Submit Changes</button>
           </form>
+            <!-- DELETE MOVIE BUTTON -->
           <button class="btn btn-danger" ng-click="deleteMovie(id, movie)">Delete Movie</button>
         </div>
       </div>
