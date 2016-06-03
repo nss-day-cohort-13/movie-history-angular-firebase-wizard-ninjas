@@ -6,7 +6,7 @@ MUST include this factory ('moviePath') in its function arguments
 movieHunter.factory("moviePath", (function($http) {
 
 		const FB_URL = "https://movie-hunter.firebaseio.com/movies";
-		let myMovies;
+		let myMovies = {};
 
 		return {
 			// GET from firebase
@@ -14,7 +14,6 @@ movieHunter.factory("moviePath", (function($http) {
 				$http.get(`${FB_URL}.json`)
 					.then(ret => {
 							myMovies = ret.data;
-							// controller3.getMovies(myMovies);
 						}
 					);
 			},
@@ -35,6 +34,7 @@ movieHunter.factory("moviePath", (function($http) {
 					.then(factory.getMoviesFromFirebase);
 
 			},
+			//added a 'getter' here to return the movies object to the controller. 
 			getMoviesObject () {
 				return myMovies;
 			}

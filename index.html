@@ -22,9 +22,33 @@
     </form>
     </div>
 
-    <!-- My movies Div. connected to controller 3 (populated by controller 2) -->
+    <!-- My movies Div. connected to controller 3 -->
     <div id="myMovies" ng-controller="controller3">
-      
+      <button class = "btn btn-success" ng-click="loadMyMovies()">Load My Movies</button>
+
+      <div class="container-fluid">
+      <div class="row" >
+        <div class="col col-xs-4" ng-repeat="movie in currentMoviesObject">
+          <h3>{{movie.name}}</h3>
+          <p>Released {{movie.released}}</p>
+          <p>Cast: <span ng-repeat="member in movie.cast">{{member}}, </span></p>
+          <form class="form-group" ng-submit="editMovie(id, movie)">
+            <label  class="form-control" for="watched">Watched?
+              <input id="watched" type="checkbox" checked="{{movie.watched}}">
+            </label>
+            <label class="form-control" for="rating" ng-model="currentRating">Rating
+              <input type="radio" name="rating" value="1">1
+              <input type="radio" name="rating" value="2">2
+              <input type="radio" name="rating" value="3">3
+              <input type="radio" name="rating" value="4">4
+              <input type="radio" name="rating" value="5">5
+            </label>
+            <button class="btn btn-default" type="submit">Submit Changes</button>
+          </form>
+          <button class="btn btn-danger" ng-click="deleteMovie(id, movie)">Delete Movie</button>
+        </div>
+      </div>
+      </div>
     </div>
 
     <script src="/node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
