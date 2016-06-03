@@ -7,8 +7,8 @@ movieHunter
     $scope.asnychronousLoadMyMovies = function () {
       moviePath.getMoviesFromFirebase()
         .then(moviesObject => {
+          console.log("movies object from async load", moviesObject );
           $scope.currentMoviesObject=moviesObject;
-          console.log("movies object", $scope.currentMoviesObject);
           $scope.$apply();
         })
         .catch(e => {console.log(e);}); 
@@ -22,7 +22,13 @@ movieHunter
     };
 
     $scope.deleteMovie = function(id, movie) {
-      console.log("trying to make a delete movie function", id, movie );
+      moviePath.deleteMovieFromFirebase(id, movie)
+        .then($scope.asnychronousLoadMyMovies)
+        // .then(moviesObject => {
+          // $scope.currentMoviesObject = moviePath.getMoviesObject();
+          // $scope.$apply();
+        // })
+        .catch(e => {console.log(e);});
     };
 
   }));

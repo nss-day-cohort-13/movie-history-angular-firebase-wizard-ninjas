@@ -29,7 +29,7 @@
       <div class="container-fluid">
       <div class="row">
       <!-- MAIN NG REPEAT -->
-        <div class="col col-xs-4" ng-repeat="movie in currentMoviesObject">
+        <div class="col col-xs-4" ng-repeat="(id, movie) in currentMoviesObject">
           <h3>{{movie.name}}</h3>
           <p>Released {{movie.released}}</p>
           <p>Cast: <span ng-repeat="member in movie.cast">{{member}}, </span></p>

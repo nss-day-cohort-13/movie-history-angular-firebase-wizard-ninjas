@@ -35,9 +35,7 @@ movieHunter.factory("moviePath", (function($http) {
 				this method to call the getMoviesFromFirebase method
 			*/
 			deleteMovieFromFirebase (id, factory) {
-				$http.delete(`${FB_URL}/${id}.json`)
-					.then(factory.getMoviesFromFirebase);
-
+				return $http.delete(`${FB_URL}${id}.json`)
 			},
 			//added a 'getter' here to return the movies object to the controller. 
 			getMoviesObject () {
