@@ -1,8 +1,9 @@
-angular.module("movieHunter")
-  .controller("controller3", ($scope, factory2) => {
 
-    getMovies = function(movies) {
-      console.log("movies", movies );
-    };
+movieHunter
+  .controller("controller3", (function(moviePath, $scope) {
+
+    // document.ready( () => controller3.getMovies);
+
+    const currentMovies = moviePath.getMoviesObject();
  
-  });
+  }));

@@ -3,9 +3,9 @@ Any controller that needs access to these methods
 MUST include this factory ('moviePath') in its function arguments
 */
 
-movieHunter.factory('moviePath', ($http, controller3) => {
+movieHunter.factory("moviePath", (function($http) {
 
-		const FB_URL = 'https://movie-hunter.firebaseio.com/movies';
+		const FB_URL = "https://movie-hunter.firebaseio.com/movies";
 		let myMovies;
 
 		return {
@@ -14,9 +14,9 @@ movieHunter.factory('moviePath', ($http, controller3) => {
 				$http.get(`${FB_URL}.json`)
 					.then(ret => {
 							myMovies = ret.data;
-							controller3.getMovies(myMovies);
+							// controller3.getMovies(myMovies);
 						}
-					)
+					);
 			},
 			/*
 				POST to firebase; 'factory' argument allows
@@ -24,7 +24,7 @@ movieHunter.factory('moviePath', ($http, controller3) => {
 			*/
 			postMovieToFirebase (object, factory) {
 				$http.post(`${FB_URL}.json`, object)
-					.then(factory.getMoviesFromFirebase)
+					.then(factory.getMoviesFromFirebase);
 			},
 			/*
 				DELETE from firebase; 'factory' argument allows
@@ -32,7 +32,12 @@ movieHunter.factory('moviePath', ($http, controller3) => {
 			*/
 			deleteMovieFromFirebase (id, factory) {
 				$http.delete(`${FB_URL}/${id}.json`)
-					.then(factory.getMoviesFromFirebase)
+					.then(factory.getMoviesFromFirebase);
+
+			},
+			getMoviesObject () {
+				return myMovies;
 			}
-		}
-	})
+		};
+
+	}));
