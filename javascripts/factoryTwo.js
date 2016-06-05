@@ -15,7 +15,6 @@ movieHunter.factory("moviePath", (function($http) {
       return new Promise(function(resolve, reject) {
         $http.get(`${FB_URL}.json`)
           .then(ret => {
-            console.log("data", ret );
             myMovies = ret.data;
             resolve(myMovies);
           }
@@ -37,9 +36,14 @@ movieHunter.factory("moviePath", (function($http) {
 			deleteMovieFromFirebase (id, factory) {
 				return $http.delete(`${FB_URL}${id}.json`)
 			},
-			//added a 'getter' here to return the movies object to the controller. 
+			/*
+				PATCH to firebase
+			*/
+			patchMovieToFirebase (id, movie) {
+				return $http.patch(`${FB_URL}${id}.json`, movie)
+			},
+			//added a 'getter' here to return the movies object to the controller.
 			getMoviesObject () {
-				console.log("Movies in getMoviesObject", myMovies);
 				return myMovies;
 			}
 		};
