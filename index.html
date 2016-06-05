@@ -37,7 +37,7 @@
           <!-- EDIT MOVIE FORM -->
           <form class="form-group" ng-submit="editMovie(id, movie)">
             <label  class="form-control" for="watched">Watched?
-              <input id="watched" type="checkbox" ng-checked="movie.watched" ng-click="switchWatched(id, movie)">
+              <input id="watched" type="checkbox" ng-checked="movie.watched" ng-click="changeWatched(movie)">
             </label>
             <label class="form-control" for="rating">Rating
               <label ng-repeat="rating in ratingsOptions" for="{{rating}}">
@@ -49,7 +49,7 @@
                   name="rating">
               </label>
             </label>
-            <button class="btn btn-default" type="submit" ng-click="patchMovieToFirebase(id, movie)">Submit Changes</button>
+            <button class="btn btn-default" type="submit">Submit Changes</button>
           </form>
             <!-- DELETE MOVIE BUTTON -->
           <button class="btn btn-danger" ng-click="deleteMovie(id, movie)">Delete Movie</button>
