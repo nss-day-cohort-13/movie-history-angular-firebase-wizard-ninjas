@@ -3,6 +3,7 @@ movieHunter
   .controller("controller3", (function(moviePath, $scope) {
 
     $scope.currentMoviesObject = {};
+    $scope.ratingsOptions = [1, 2, 3, 4, 5];
 
     $scope.asnychronousLoadMyMovies = function () {
       moviePath.getMoviesFromFirebase()
@@ -31,8 +32,8 @@ movieHunter
 
     $scope.switchWatched = function (id, movie) {
       movie.watched = !movie.watched;
-      console.log("id: ", id);
-      console.log("movie: ", movie);
+
     }
 
-  }));
+  }))
+

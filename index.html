@@ -39,12 +39,15 @@
             <label  class="form-control" for="watched">Watched?
               <input id="watched" type="checkbox" ng-checked="movie.watched" ng-click="switchWatched(id, movie)">
             </label>
-            <label class="form-control" for="rating" ng-model="currentRating">Rating
-              <input type="radio" name="rating" value="1">1
-              <input type="radio" name="rating" value="2">2
-              <input type="radio" name="rating" value="3">3
-              <input type="radio" name="rating" value="4">4
-              <input type="radio" name="rating" value="5">5
+            <label class="form-control" for="rating">Rating
+              <label ng-repeat="rating in ratingsOptions" for="{{rating}}">
+                {{rating}}
+                <input
+                  type="radio"
+                  ng-model="movie.rating"
+                  value="{{rating}}"
+                  name="rating">
+              </label>
             </label>
             <button class="btn btn-default" type="submit" ng-click="patchMovieToFirebase(id, movie)">Submit Changes</button>
           </form>
