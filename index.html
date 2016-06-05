@@ -39,13 +39,13 @@
             <label  class="form-control" for="watched">Watched?
               <input id="watched" type="checkbox" ng-checked="movie.watched" ng-click="changeWatched(movie)">
             </label>
-            <label class="form-control" for="rating">Rating
+            <label class="form-control" for="rating" ng-if="movie.watched">Rating
               <label ng-repeat="rating in ratingsOptions" for="{{rating}}">
                 {{rating}}
                 <input
                   type="radio"
                   ng-model="movie.rating"
-                  value="{{rating}}"
+                  ng-value="rating"
                   name="rating">
               </label>
             </label>

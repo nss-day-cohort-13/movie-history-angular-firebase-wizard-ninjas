@@ -8,14 +8,11 @@ movieHunter
     $scope.asnychronousLoadMyMovies = function () {
       moviePath.getMoviesFromFirebase()
         .then(moviesObject => {
-          $scope.currentMoviesObject=moviesObject;
+          $scope.currentMoviesObject = moviesObject;
           $scope.$apply();
         })
         .catch(e => {console.log(e);});
     };
-
-
-    $scope.currentRating = "";
 
     $scope.editMovie = function (id, movie) {
       moviePath.patchMovieToFirebase(id, movie)
@@ -31,11 +28,6 @@ movieHunter
 
     $scope.changeWatched = function (movie) {
       movie.watched = !movie.watched;
-    }
-
-    $scope.submitChanges = function (id, movie) {
-      console.log("edited movie: ", id, movie);
-
     };
 
   }))
